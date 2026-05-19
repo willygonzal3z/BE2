@@ -254,7 +254,11 @@ export function SmartContactForm() {
               )}
             </Button>
             <p className="text-center text-[10px] text-muted-foreground/40">
-              Al enviar aceptas nuestra política de privacidad.
+              Al enviar aceptas nuestra{" "}
+              <a href="/privacidad" target="_blank" rel="noopener noreferrer" className="underline hover:text-accent transition-colors">
+                política de privacidad
+              </a>
+              .
             </p>
           </form>
         </Form>
