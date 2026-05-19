@@ -35,7 +35,7 @@ export function ThemeToggle() {
       className="inline-flex h-9 w-9 items-center justify-center rounded-full glass transition hover:border-white/20"
     >
       {theme === "dark" ? (
-        <Sun className="h-4 w-4 text-accent" />
+        <Sun className="h-4 w-4 text-yellow-400" />
       ) : (
         <Moon className="h-4 w-4 text-brand" />
       )}
