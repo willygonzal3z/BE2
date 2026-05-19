@@ -11,18 +11,73 @@ function esc(s: string) {
 function buildEmailHtml(name: string, email: string, service: string, message: string) {
   return `<!DOCTYPE html>
 <html lang="es">
-<body style="font-family:sans-serif;background:#0d0d0d;color:#e5e5e5;padding:32px;margin:0">
-  <div style="max-width:560px;margin:0 auto;background:#1a1a1a;border-radius:12px;padding:32px;border:1px solid #333">
-    <h1 style="margin:0 0 8px;font-size:22px;color:#fff">🚀 Nuevo Lead — Boost Experiences</h1>
-    <p style="margin:0 0 24px;color:#999;font-size:14px">Mensaje recibido desde la web</p>
-    <table style="width:100%;border-collapse:collapse">
-      <tr><td style="padding:10px 0;border-bottom:1px solid #2a2a2a;color:#999;font-size:13px;width:120px">Nombre</td><td style="padding:10px 0;border-bottom:1px solid #2a2a2a;font-weight:600">${esc(name)}</td></tr>
-      <tr><td style="padding:10px 0;border-bottom:1px solid #2a2a2a;color:#999;font-size:13px">Email</td><td style="padding:10px 0;border-bottom:1px solid #2a2a2a"><a href="mailto:${esc(email)}" style="color:#a78bfa">${esc(email)}</a></td></tr>
-      <tr><td style="padding:10px 0;border-bottom:1px solid #2a2a2a;color:#999;font-size:13px">Servicio</td><td style="padding:10px 0;border-bottom:1px solid #2a2a2a;color:#a78bfa;font-weight:600">${esc(service)}</td></tr>
-    </table>
-    <p style="margin:24px 0 8px;color:#999;font-size:13px">Mensaje</p>
-    <p style="margin:0;background:#111;border-radius:8px;padding:16px;line-height:1.6;white-space:pre-wrap">${esc(message)}</p>
-    <p style="margin:24px 0 0;font-size:12px;color:#555;text-align:center">Boost Experiences · Enviado automáticamente tras verificación CAPTCHA</p>
+<head>
+  <meta charset="UTF-8">
+  <title>Nuevo Lead — Boost Experiences</title>
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #090a0f; color: #f4f4f5; padding: 40px 20px; margin: 0; -webkit-font-smoothing: antialiased;">
+  <div style="max-width: 600px; margin: 0 auto; background: #131520; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
+    
+    <!-- Top Brand Gradient Bar -->
+    <div style="height: 6px; background: linear-gradient(90deg, #0078cf 0%, #6796ff 100%);"></div>
+    
+    <div style="padding: 40px 32px;">
+      <!-- Header -->
+      <table style="width: 100%; margin-bottom: 32px;">
+        <tr>
+          <td style="vertical-align: middle;">
+            <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: #6796ff; font-weight: 700; display: block; margin-bottom: 4px;">Contacto de la Web</span>
+            <h1 style="margin: 0; font-size: 24px; font-weight: 800; color: #ffffff;">🚀 Nuevo Lead Recibido</h1>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Details Card -->
+      <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px; padding: 24px; margin-bottom: 32px;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); color: #a1a1aa; font-size: 13px; font-weight: 500; width: 140px;">Nombre</td>
+            <td style="padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); color: #ffffff; font-size: 14px; font-weight: 600;">${esc(name)}</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); color: #a1a1aa; font-size: 13px; font-weight: 500;">Email</td>
+            <td style="padding: 12px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); color: #0078cf; font-size: 14px; font-weight: 600;">
+              <a href="mailto:${esc(email)}" style="color: #6796ff; text-decoration: none; border-bottom: 1px dashed rgba(103, 150, 255, 0.4);">${esc(email)}</a>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 0; color: #a1a1aa; font-size: 13px; font-weight: 500;">Servicio de Interés</td>
+            <td style="padding: 12px 0; color: #ffffff; font-size: 14px; font-weight: 600;">
+              <span style="background: rgba(0, 120, 207, 0.15); border: 1px solid rgba(0, 120, 207, 0.3); color: #6796ff; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700; display: inline-block;">
+                ${esc(service)}
+              </span>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Message Header -->
+      <h3 style="margin: 0 0 12px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #a1a1aa;">Mensaje del Cliente</h3>
+      
+      <!-- Message Body -->
+      <div style="background: rgba(255, 255, 255, 0.02); border-left: 3px solid #0078cf; border-radius: 0 8px 8px 0; padding: 20px; margin-bottom: 40px;">
+        <p style="margin: 0; color: #e4e4e7; font-size: 15px; line-height: 1.6; white-space: pre-wrap; font-family: inherit;">${esc(message)}</p>
+      </div>
+
+      <!-- Reply CTA -->
+      <div style="text-align: center; margin-bottom: 24px;">
+        <a href="mailto:${esc(email)}" style="display: inline-block; background: linear-gradient(135deg, #0078cf 0%, #6796ff 100%); color: #ffffff; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-size: 14px; font-weight: 700; letter-spacing: 0.02em; box-shadow: 0 4px 12px rgba(0, 120, 207, 0.3);">
+          📥 Responder por Email
+        </a>
+      </div>
+
+      <!-- Footer Info -->
+      <div style="border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 24px; text-align: center;">
+        <p style="margin: 0 0 4px; font-size: 11px; color: #71717a;">Este correo fue enviado automáticamente por el sistema de contacto de Boost Experiences.</p>
+        <p style="margin: 0; font-size: 11px; color: #52525b;">Verificación de seguridad Cloudflare Turnstile aprobada.</p>
+      </div>
+
+    </div>
   </div>
 </body>
 </html>`;
