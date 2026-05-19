@@ -269,6 +269,29 @@ npm start
 
 ---
 
+## Tareas Pendientes
+
+### Diseño e Identidad Visual
+
+- [ ] **Modificar el favicon** — Reemplazar `public/favicon.png`, `public/favicon.svg` y `public/favicon.ico` con el ícono definitivo de la marca. Generar también `public/apple-touch-icon.png` (180×180px), `public/icon-192.png` y `public/icon-512.png` para el manifiesto PWA.
+
+- [ ] **Ajustar las fuentes de títulos (H1–H4)** — Revisar la fuente display actual (Outfit) y los pesos/tamaños aplicados en los headings. Si se cambia la fuente, actualizar la importación en `src/app/layout.tsx` (en el `Outfit({...})` de `next/font/google`) y la variable `--font-display` en `src/app/globals.css`.
+
+- [ ] **Ajustar el estilo del correo de notificación** — El template HTML del email de contacto está en `src/app/api/contact/route.ts` en la función `buildEmailHtml()`. Actualmente usa fondo oscuro genérico (`#0d0d0d`). Actualizar colores, tipografía y estructura para que sea coherente con la identidad visual de Boost Experiences (colores brand, fuentes, logo, etc.).
+
+### Legal y Privacidad
+
+- [ ] **Política de Privacidad** — Crear una página `/privacidad` (nuevo archivo `src/app/privacidad/page.tsx`) con la política de privacidad de Boost Experiences. Debe cubrir: datos recopilados por el formulario de contacto, uso de cookies de seguimiento, terceros (Google Analytics, etc.), derechos del usuario (acceso, rectificación, eliminación), y datos de contacto para ejercer derechos. Actualizar el link en el formulario (`SmartContactForm.tsx`, línea del texto "política de privacidad").
+
+- [ ] **Banner de consentimiento de cookies** — Evaluar qué cookies de seguimiento se necesitan (analytics, heatmaps, etc.) e implementar un banner de aceptación que cumpla con GDPR / Ley 25.326 (Argentina). Opciones recomendadas: `react-cookie-consent` o una implementación propia con Sonner/Dialog. El banner debe: aparecer en la primera visita, permitir aceptar/rechazar, guardar preferencia en `localStorage`, y cargar scripts de seguimiento solo tras el consentimiento. Integrar el link a la Política de Privacidad dentro del banner.
+
+### Assets SEO
+
+- [ ] **Crear `public/og-image.jpg`** (1200×630px) — Requerido por Open Graph y Twitter Card para el preview al compartir en redes sociales.
+- [ ] **Configurar dominio real en Cloudflare Turnstile dashboard** — Autorizar el dominio de producción para el site key configurado.
+
+---
+
 ## Notas de Producción
 
 1. **Dominio del email (Resend):** El remitente actual es `onboarding@resend.dev` (dominio de prueba de Resend). Para producción, configurar un dominio propio en resend.com y actualizar el campo `from` en `/api/contact/route.ts`.
