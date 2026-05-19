@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
+import { CookieConsent } from "@/components/CookieConsent";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -136,6 +137,7 @@ export default function RootLayout({
       <body>
         {children}
         <Toaster richColors position="top-right" />
+        <CookieConsent />
       </body>
     </html>
   );
