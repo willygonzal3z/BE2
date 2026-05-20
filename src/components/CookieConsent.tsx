@@ -34,7 +34,7 @@ export function CookieConsent() {
 
   return (
     <div className="fixed bottom-6 left-6 right-6 z-50 mx-auto max-w-4xl animate-fade-up">
-      <div className="relative overflow-hidden rounded-2xl glass border border-white/15 bg-background/90 p-5 md:p-6 backdrop-blur-xl shadow-2xl transition-all hover:border-white/20">
+      <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-card/95 p-5 md:p-6 backdrop-blur-xl shadow-2xl transition-all hover:border-white/20">
         
         {/* Glow de fondo sutil */}
         <div className="pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full bg-brand/10 blur-2xl" />
