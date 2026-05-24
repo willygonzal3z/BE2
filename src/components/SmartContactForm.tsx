@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 import { ArrowRight, Loader2, CheckCircle2, Sparkles, MessageCircle } from "lucide-react";
+import * as gtag from "@/lib/gtag";
 
 const serviceOptions = [
   "Diseño UX/UI",
@@ -91,6 +92,12 @@ export function SmartContactForm() {
       if (response.ok) {
         setIsSuccess(true);
         toast.success("¡Mensaje enviado con éxito!");
+        
+        // Registrar evento de conversión en Google Analytics
+        gtag.event("generate_lead", {
+          service_type: values.service,
+          lead_source: "contact_form",
+        });
         
         // WhatsApp Redirect after success (Optional, keeping from index.tsx logic)
         const text = `Hola Boost Experiences, soy ${values.name} (${values.email}).\nServicio de interés: ${values.service}\n\n${values.message}`;

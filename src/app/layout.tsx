@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Outfit, Inter } from "next/font/google";
+import Script from "next/script";
 import { Toaster } from "@/components/ui/sonner";
 import { CookieConsent } from "@/components/CookieConsent";
 import "./globals.css";
+
 
 const outfit = Outfit({
   variable: "--font-display",
@@ -134,6 +136,58 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: webSchema }}
         />
       </head>
+      {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS && (
+        <>
+          {/* Inicializar Consent Mode por defecto leyendo de localStorage */}
+          <Script
+            id="google-analytics-consent"
+            strategy="beforeInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                
+                let consentState = 'denied';
+                try {
+                  const savedConsent = localStorage.getItem("boost_cookie_consent");
+                  if (savedConsent === "accepted") {
+                    consentState = "granted";
+                  }
+                } catch (e) {
+                  console.error("Error leyendo consentimiento de cookies:", e);
+                }
+
+                gtag('consent', 'default', {
+                  'analytics_storage': consentState,
+                  'ad_storage': consentState,
+                  'ad_user_data': consentState,
+                  'ad_personalization': consentState
+                });
+              `,
+            }}
+          />
+          {/* Cargar el script de Google Analytics principal */}
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+            strategy="afterInteractive"
+          />
+          {/* Configurar e iniciar GA4 */}
+          <Script
+            id="google-analytics-init"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+            }}
+          />
+        </>
+      )}
       <body>
         {children}
         <Toaster richColors position="top-right" />

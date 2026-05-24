@@ -24,6 +24,7 @@ Sitio web institucional de **Boost Experiences**, agencia digital especializada 
 | Iconos | Lucide React | ^0.575 |
 | Fuentes | Outfit (display) + Inter (body) | via next/font |
 | Web3 | @metamask/logo | ^4.0 |
+| Analíticas | Google Analytics (GA4) | via next/script + Consent Mode |
 
 ---
 
@@ -50,6 +51,7 @@ be2/
 │   │   └── use-mobile.tsx         # Hook para detección de breakpoint mobile
 │   └── lib/
 │       ├── utils.ts               # Utilidades (cn para clases)
+│       ├── gtag.ts                # Utilidades de Google Analytics (Consent Mode + custom events)
 │       ├── error-capture.ts       # Captura de errores
 │       └── error-page.ts          # Template de página de error
 ├── public/
@@ -152,6 +154,9 @@ CONTACT_EMAIL=                    # Email donde llegan los leads
 
 # IA (Google Gemini)
 GOOGLE_GENERATIVE_AI_API_KEY=     # API key de aistudio.google.com
+
+# Google Analytics
+NEXT_PUBLIC_GOOGLE_ANALYTICS=     # ID de medición (G-XXXXXXXXXX)
 ```
 
 ---
@@ -283,7 +288,7 @@ npm start
 
 - [ ] **Política de Privacidad** — Crear una página `/privacidad` (nuevo archivo `src/app/privacidad/page.tsx`) con la política de privacidad de Boost Experiences. Debe cubrir: datos recopilados por el formulario de contacto, uso de cookies de seguimiento, terceros (Google Analytics, etc.), derechos del usuario (acceso, rectificación, eliminación), y datos de contacto para ejercer derechos. Actualizar el link en el formulario (`SmartContactForm.tsx`, línea del texto "política de privacidad").
 
-- [ ] **Banner de consentimiento de cookies** — Evaluar qué cookies de seguimiento se necesitan (analytics, heatmaps, etc.) e implementar un banner de aceptación que cumpla con GDPR / Ley 25.326 (Argentina). Opciones recomendadas: `react-cookie-consent` o una implementación propia con Sonner/Dialog. El banner debe: aparecer en la primera visita, permitir aceptar/rechazar, guardar preferencia en `localStorage`, y cargar scripts de seguimiento solo tras el consentimiento. Integrar el link a la Política de Privacidad dentro del banner.
+- [x] **Banner de consentimiento de cookies** — Implementado banner de aceptación que cumple con GDPR / Ley 25.326 (Argentina), con integración dinámica de Google Analytics (Consent Mode). Permite aceptar/rechazar, guarda la preferencia en `localStorage` y actualiza analíticas en tiempo real.
 
 ### Assets SEO
 

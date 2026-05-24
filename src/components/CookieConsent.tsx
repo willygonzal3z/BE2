@@ -22,11 +22,27 @@ export function CookieConsent() {
 
   const handleAccept = () => {
     localStorage.setItem("boost_cookie_consent", "accepted");
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("consent", "update", {
+        analytics_storage: "granted",
+        ad_storage: "granted",
+        ad_user_data: "granted",
+        ad_personalization: "granted",
+      });
+    }
     setIsVisible(false);
   };
 
   const handleDecline = () => {
     localStorage.setItem("boost_cookie_consent", "declined");
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("consent", "update", {
+        analytics_storage: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+      });
+    }
     setIsVisible(false);
   };
 
